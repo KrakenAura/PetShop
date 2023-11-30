@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "121174944945",
+    "project_id": "petshop-754cb",
+    "storage_bucket": "petshop-754cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121174944945:android:ff14c554424b8ecb11c690",
+        "android_client_info": {
+          "package_name": "com.prak.pet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZt4kdImcXZVLBu2Og2MzijMHi4mCj92o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

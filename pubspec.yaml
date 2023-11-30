@@ -1,0 +1,38 @@
+name: pet
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment:
+  sdk: ">=3.1.0 <4.0.0"
+
+dependencies:
+  tuple: ^2.0.0
+  cached_network_image: ^3.1.0
+  json_annotation: any
+  jiffy: ^4.1.0
+  shared_preferences: ^2.0.6
+  visibility_detector: ^0.2.0
+  get: 4.6.6
+  cupertino_icons: ^1.0.2
+  google_fonts: ^6.1.0
+  image_picker: ^1.0.4
+  google_nav_bar: ^5.0.6
+  webview_flutter: ^4.2.2
+  firebase_auth: ^4.7.3
+  firebase_core: ^2.15.1
+  firebase_messaging: ^14.6.6
+  dio: ^4.0.6
+  flutter:
+    sdk: flutter
+  firebase_in_app_messaging: ^0.7.4+5
+  appwrite: any
+
+dev_dependencies:
+  flutter_lints: 3.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  assets:
+    - assets/
+  uses-material-design: true
