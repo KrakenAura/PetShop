@@ -1,8 +1,8 @@
-
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet/app/modules/appwrite/controllers/client_controller.dart';
+import 'package:pet/app/routes/app_pages.dart';
 
 class AccountController extends ClientController {
   Account? account;
@@ -65,6 +65,27 @@ class AccountController extends ClientController {
         ),
         contentPadding: const EdgeInsets.only(top: 5, left: 15, right: 15),
       );
+    }
+  }
+
+  Future<void> registerAppWrite(
+      String email, String password, String name) async {
+    try {
+      isLoading.value = true;
+      final result = await createAccount({
+        'userId': ID.unique(),
+        'email': email,
+        'password': password,
+        'name': name,
+      });
+      print(result);
+      Get.snackbar('Success', 'Registration successful',
+          backgroundColor: Colors.green);
+      Get.toNamed(Routes.HOMEPAGE);
+    } catch (error) {
+      Get.snackbar('Error', 'Registration failed', backgroundColor: Colors.red);
+    } finally {
+      isLoading.value = false;
     }
   }
 }

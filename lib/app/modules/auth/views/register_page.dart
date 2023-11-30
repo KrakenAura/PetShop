@@ -150,12 +150,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 onPressed: _accountController.isLoading.value
                     ? null
                     : () {
-                        _accountController.createAccount(
-                          {
-                            'email': _emailController.text,
-                            'password': _passwordController.text,
-                            'name': _usernameController.text,
-                          },
+                        _accountController.registerAppWrite(
+                          _emailController.text,
+                          _passwordController.text,
+                          _usernameController.text,
                         );
                       },
                 style: ElevatedButton.styleFrom(
