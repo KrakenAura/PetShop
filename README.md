@@ -1,4 +1,4 @@
-# pet
+# Petshop
 
 A new Flutter project.
 
