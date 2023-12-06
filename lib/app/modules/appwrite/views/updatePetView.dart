@@ -1,39 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:get/get.dart';
+import 'package:pet/app/routes/app_pages.dart';
 import 'package:appwrite/models.dart';
 import 'package:pet/app/modules/appwrite/controllers/client_controller.dart';
+import '../views/PetView.dart';
+import '../views/deletePetView.dart';
 
 class UpdatePetView extends StatelessWidget {
   final TextEditingController namaController = TextEditingController();
-  final Document document;
-
-  UpdatePetView({required this.document}) {
-    namaController.text = document.data['nama'].toString();
-  }
+  final ClientController clientController = Get.put(ClientController());
 
   @override
   Widget build(BuildContext context) {
+    final Document document = Get.arguments as Document;
+
+    // Set the initial value of the TextEditingController
+    namaController.text = document.data['nama'].toString();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Cat'),
+        title: Text('Update Pet'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
+            TextFormField(
               controller: namaController,
-              decoration: InputDecoration(labelText: 'Nama'),
+              decoration: InputDecoration(labelText: 'Pet Name'),
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () async {
-                await updateAppwriteDocument(document.$id, namaController.text);
-                Get.back();
+              onPressed: () {
+                // Call the update function
+                updateDocument(document.$id, namaController.text);
               },
-              child: Text('Update Cat'),
+              child: Text('Update Pet'),
             ),
           ],
         ),
@@ -42,24 +45,88 @@ class UpdatePetView extends StatelessWidget {
   }
 }
 
-Future<void> updateAppwriteDocument(
-    String documentId, String updatedNama) async {
-  final ClientController clientController = Get.find<ClientController>();
-  final client = clientController.client;
+// Function to update the document
+class _DataListState extends State<DataList> {
+  late ClientController clientController;
+  late Client client;
+  late Databases database;
 
-  final database = Databases(client);
+  @override
+  void initState() {
+    super.initState();
+    clientController = widget.clientController;
+    client = clientController.client;
+    database = Databases(client);
+  }
 
-  try {
-    await database.updateDocument(
-      collectionId: '6566f54919c1da36ed45',
-      databaseId: '6566f53c24bce25427c1',
-      documentId: documentId,
-      data: {
-        'Nama': updatedNama,
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<Document>>(
+      future: getDataList(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        }
+
+        if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+
+        List<Document>? dataList = snapshot.data;
+
+        if (dataList == null || dataList.isEmpty) {
+          return Text('No data available.');
+        }
+
+        return Expanded(
+          child: ListView.builder(
+            itemCount: dataList.length,
+            itemBuilder: (context, index) {
+              Document document = dataList[index];
+
+              return ListTile(
+                title: Text(document.data?['nama']?.toString() ?? 'No Name'),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        deleteDocument(document.$id);
+                        setState(() {});
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        // Navigate to the update screen
+                        Get.toNamed(Routes.UPDATE_uPETVIEW,
+                            arguments: document);
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        );
       },
     );
-    print('Document updated successfully');
-  } catch (e) {
-    print('Error updating document: $e');
+
+    Future<void> updateDocument(String documentId, String updatedName) async {
+      try {
+        await database.updateDocument(
+          collectionId: '656f243bd53ab5dd346b',
+          databaseId: '656f2434c46e4f2c065d',
+          documentId: documentId,
+          data: {'nama': updatedName},
+        );
+
+        // Navigate back to the previous screen
+        Get.back();
+      } catch (e) {
+        print('Error updating document: $e');
+      }
+    }
   }
 }
