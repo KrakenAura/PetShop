@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
+import 'package:pet/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:pet/app/modules/appwrite/controllers/client_controller.dart';
+import 'package:pet/style.dart';
+import 'package:flutter/material.dart';
 
 class PetView extends StatelessWidget {
   final TextEditingController namaController = TextEditingController();
@@ -57,6 +60,23 @@ class PetView extends StatelessWidget {
                       jenisController.text, usia, warnaController.text);
                 },
                 child: Text('Create Document in Appwrite'),
+              ),
+              Container(
+                width: 150,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.DELETE_PETVIEW);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: orangeColor,
+                  ),
+                  child: Text(
+                    'Update and Delete',
+                    style: whiteTextStyle.copyWith(
+                        fontSize: 16, backgroundColor: orangeColor),
+                  ),
+                ),
               ),
             ],
           ),

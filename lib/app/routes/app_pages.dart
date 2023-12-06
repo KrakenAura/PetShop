@@ -30,6 +30,7 @@ class AppPages {
   // static const INITIAL = Routes.HEWAN;
   // static const INITIAL = Routes.PETVIEW;
   static const INITIAL = Routes.DELETE_PETVIEW;
+  // static const INITIAL = Routes.UPDATE_PETVIEW;
 
   static final routes = [
     GetPage(
@@ -89,7 +90,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.UPDATE_PETVIEW,
-      page: () => UpdatePetView(),
+      page: () => UpdatePetView(document: Get.arguments),
       binding: AppwriteBinding(),
     ),
   ];

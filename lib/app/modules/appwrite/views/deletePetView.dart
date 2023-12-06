@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:pet/app/routes/app_pages.dart';
 import 'package:appwrite/models.dart';
 import 'package:pet/app/modules/appwrite/controllers/client_controller.dart';
-import '../views/PetView.dart';
+import 'updatePetView.dart';
 
 class DeletePetView extends StatelessWidget {
   final TextEditingController namaController = TextEditingController();
@@ -95,12 +95,26 @@ class _DataListState extends State<DataList> {
 
               return ListTile(
                 title: Text(document.data['Nama'].toString()),
-                trailing: IconButton(
-                  icon: Icon(Icons.delete),
-                  onPressed: () {
-                    deleteDocument(document.$id);
-                    setState(() {});
-                  },
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        deleteDocument(document.$id);
+                        setState(() {});
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        Get.to(() => UpdatePetView(document: document))
+                            ?.then((_) {
+                          setState(() {});
+                        });
+                      },
+                    )
+                  ],
                 ),
               );
             },
