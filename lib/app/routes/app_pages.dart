@@ -6,6 +6,7 @@ import '../modules/about/bindings/about_binding.dart';
 import '../modules/about/views/about_view.dart';
 import '../modules/appwrite/bindings/appwrite_binding.dart';
 import '../modules/appwrite/views/PetView.dart';
+import '../modules/appwrite/views/updatePetView.dart';
 import '../modules/appwrite/views/deletePetView.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
@@ -84,6 +85,11 @@ class AppPages {
     GetPage(
       name: _Paths.DELETE_PETVIEW,
       page: () => DeletePetView(),
+      binding: AppwriteBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATE_PETVIEW,
+      page: () => UpdatePetView(),
       binding: AppwriteBinding(),
     ),
   ];
