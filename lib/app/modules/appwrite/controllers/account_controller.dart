@@ -88,4 +88,27 @@ class AccountController extends ClientController {
       isLoading.value = false;
     }
   }
+
+  Future<void> loginAppWrite(String email, String password) async {
+    try {
+      isLoading.value = true;
+
+      final result = await createEmailSession({
+        'email': email,
+        'password': password,
+      });
+      if (result.statusCode == 200) {
+        Get.snackbar('Success', 'Login successful',
+            backgroundColor: Colors.green);
+        Get.toNamed(Routes.HOMEPAGE);
+      } else {
+        Get.snackbar('Error', 'Login failed', backgroundColor: Colors.red);
+      }
+    } catch (error) {
+      Get.snackbar('Error', 'An unexpected error occurred',
+          backgroundColor: Colors.red);
+    } finally {
+      isLoading.value = false;
+    }
+  }
 }

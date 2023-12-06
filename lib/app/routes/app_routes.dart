@@ -12,7 +12,8 @@ abstract class Routes {
   static const AUTH = _Paths.AUTH;
   static const LOGIN = _Paths.LOGIN;
   static const REGISTER = _Paths.REGISTER;
-  static const APPWRITE = _Paths.APPWRITE;
+  static const PETVIEW = _Paths.PETVIEW;
+  static const DELETE_PETVIEW = _Paths.DELETE_PETVIEW;
 }
 
 abstract class _Paths {
@@ -26,7 +27,8 @@ abstract class _Paths {
   static const AUTH = '/auth';
   static const LOGIN = '/login';
   static const REGISTER = '/Register';
-  static const APPWRITE = '/appwrite';
+  static const PETVIEW = '/petview';
+  static const DELETE_PETVIEW = '/deletepetview';
 }
 
 final getPages = [

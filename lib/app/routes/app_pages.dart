@@ -5,7 +5,8 @@ import '../modules/Homepage/views/homepage_view.dart';
 import '../modules/about/bindings/about_binding.dart';
 import '../modules/about/views/about_view.dart';
 import '../modules/appwrite/bindings/appwrite_binding.dart';
-import '../modules/appwrite/views/appwrite_view.dart';
+import '../modules/appwrite/views/PetView.dart';
+import '../modules/appwrite/views/deletePetView.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/auth/views/login_page.dart';
@@ -24,9 +25,9 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  // static const INITIAL = Routes.HOME;
   // static const INITIAL = Routes.HEWAN;
-  // static const INITIAL = Routes.APPWRITE;
+  static const INITIAL = Routes.PETVIEW;
 
   static final routes = [
     GetPage(
@@ -74,10 +75,15 @@ class AppPages {
       page: () => RegisterPage(),
       binding: AuthBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.APPWRITE,
-    //   page: () => AppWriteView(),
-    //   binding: AppwriteBinding(),
-    // ),
+    GetPage(
+      name: _Paths.PETVIEW,
+      page: () => PetView(),
+      binding: AppwriteBinding(),
+    ),
+    GetPage(
+      name: _Paths.DELETE_PETVIEW,
+      page: () => deletePetView(),
+      binding: AppwriteBinding(),
+    ),
   ];
 }
