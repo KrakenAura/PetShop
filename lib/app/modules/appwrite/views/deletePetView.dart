@@ -94,7 +94,7 @@ class _DataListState extends State<DataList> {
               Document document = dataList![index];
 
               return ListTile(
-                title: Text(document.data['nama'].toString()),
+                title: Text(document.data['Nama'].toString()),
                 trailing: IconButton(
                   icon: Icon(Icons.delete),
                   onPressed: () {
@@ -113,8 +113,8 @@ class _DataListState extends State<DataList> {
   Future<List<Document>> getDataList() async {
     try {
       DocumentList response = await database.listDocuments(
-        collectionId: '656f243bd53ab5dd346b',
-        databaseId: '656f2434c46e4f2c065d',
+        collectionId: '6566f54919c1da36ed45',
+        databaseId: '6566f53c24bce25427c1',
       );
 
       return response.documents;
@@ -127,8 +127,8 @@ class _DataListState extends State<DataList> {
   Future<void> deleteDocument(String documentId) async {
     try {
       await database.deleteDocument(
-        collectionId: '656f243bd53ab5dd346b',
-        databaseId: '656f2434c46e4f2c065d',
+        collectionId: '6566f54919c1da36ed45',
+        databaseId: '6566f53c24bce25427c1',
         documentId: documentId,
       );
       print('Document deleted successfully');
