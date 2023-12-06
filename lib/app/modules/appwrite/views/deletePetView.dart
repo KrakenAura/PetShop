@@ -6,7 +6,7 @@ import 'package:appwrite/models.dart';
 import 'package:pet/app/modules/appwrite/controllers/client_controller.dart';
 import '../views/PetView.dart';
 
-class deletePetView extends StatelessWidget {
+class DeletePetView extends StatelessWidget {
   final TextEditingController namaController = TextEditingController();
   final ClientController clientController = Get.put(ClientController());
 

@@ -27,7 +27,8 @@ class AppPages {
 
   // static const INITIAL = Routes.HOME;
   // static const INITIAL = Routes.HEWAN;
-  static const INITIAL = Routes.PETVIEW;
+  // static const INITIAL = Routes.PETVIEW;
+  static const INITIAL = Routes.DELETE_PETVIEW;
 
   static final routes = [
     GetPage(
@@ -82,7 +83,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DELETE_PETVIEW,
-      page: () => deletePetView(),
+      page: () => DeletePetView(),
       binding: AppwriteBinding(),
     ),
   ];
