@@ -28,8 +28,8 @@ class AppPages {
 
   // static const INITIAL = Routes.HOME;
   // static const INITIAL = Routes.HEWAN;
-  // static const INITIAL = Routes.PETVIEW;
-  static const INITIAL = Routes.DELETE_PETVIEW;
+  static const INITIAL = Routes.PETVIEW;
+  // static const INITIAL = Routes.DELETE_PETVIEW;
   // static const INITIAL = Routes.UPDATE_PETVIEW;
 
   static final routes = [
