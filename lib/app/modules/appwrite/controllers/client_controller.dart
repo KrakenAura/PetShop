@@ -17,4 +17,5 @@ class ClientController extends GetxController {
         .setProject(projectID)
         .setSelfSigned(status: true);
   }
+  
 }

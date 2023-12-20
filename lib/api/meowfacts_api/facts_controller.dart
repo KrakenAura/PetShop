@@ -13,7 +13,7 @@ class FactsController extends GetxController {
     fetchFacts();
   }
 
-  Future<void> fetchFacts() async {
+  Future<List<Facts>> fetchFacts() async {
     try {
       final response =
           await http.get(Uri.parse('https://meowfacts.herokuapp.com/'));
@@ -21,12 +21,15 @@ class FactsController extends GetxController {
         final parsedData = Facts.fromJson(json.decode(response.body));
         facts.assignAll([parsedData]);
         print("Berhasil");
+        return [parsedData]; // Return the list of facts
       } else {
         print("Gagal");
+        return []; // Return an empty list in case of failure
       }
     } catch (e) {
       print('Terjadi kesalahan: $e');
       // Tangani kesalahan
+      return []; // Return an empty list in case of an error
     }
   }
 }

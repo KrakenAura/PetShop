@@ -84,6 +84,37 @@ class PetView extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> createAppwriteDocument(
+      String nama, String jenis, int usia, String warna) async {
+    // Get the existing ClientController
+    final ClientController clientController = Get.put(ClientController());
+
+    final client = clientController.client;
+
+    final database = Databases(client);
+    final sequentialIdController = Get.put(SequentialIdController());
+
+    try {
+      final nextId = sequentialIdController.IdPesanan();
+      final result = await database.createDocument(
+        documentId: nextId.toString(),
+        databaseId: '6566f53c24bce25427c1', // Replace with your database ID
+        collectionId: '6566f54919c1da36ed45', // Replace with your collection ID
+        data: {
+          'Nama': nama,
+          'Jenis': jenis,
+          'Usia': usia,
+          'Warna': warna,
+          'idPet': nextId,
+        },
+      );
+
+      print('Document created successfully: ${result.data}');
+    } catch (e) {
+      print('Error creating document: $e');
+    }
+  }
 }
 
 class SequentialIdController extends GetxController {
@@ -92,38 +123,5 @@ class SequentialIdController extends GetxController {
   int IdPesanan() {
     currentId++;
     return currentId.value;
-  }
-}
-
-Future<void> createAppwriteDocument(
-    String nama, String jenis, int usia, String warna) async {
-  // Get the existing ClientController
-  final ClientController clientController = Get.put(ClientController());
-
-  final client = clientController.client;
-
-  final database = Databases(client);
-  final sequentialIdController = Get.put(SequentialIdController());
-
-  try {
-    final nextId = sequentialIdController.IdPesanan();
-    final result = await database.createDocument(
-      documentId: nextId.toString(),
-      databaseId: '6566f53c24bce25427c1', // Replace with your database ID
-      collectionId: '6566f54919c1da36ed45', // Replace with your collection ID
-      data: {
-        'Nama': nama,
-        'Jenis': jenis,
-        'Usia': usia,
-        'Warna': warna,
-        'idPet': nextId,
-      }, // Replace with your document data
-      // read: ['*'], // Replace with the appropriate read permissions
-      // write: ['*'], // Replace with the user ID or role ID for write permissions
-    );
-
-    print('Document created successfully: ${result.data}');
-  } catch (e) {
-    print('Error creating document: $e');
   }
 }

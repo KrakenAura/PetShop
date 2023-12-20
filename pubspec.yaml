@@ -15,7 +15,7 @@ dependencies:
   get: 4.6.6
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
-  image_picker: ^1.0.4
+  image_picker: ^1.0.5
   google_nav_bar: ^5.0.6
   webview_flutter: ^4.2.2
   firebase_auth: ^4.7.3
